@@ -1,0 +1,119 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String   @id @default(uuid())
+  name            String
+  email           String   @unique
+  password        String
+  role            String   // Enum: "admin", "instructor", "student"
+  profile_picture String?  // Nullable
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+
+  Courses          Course[]        @relation("CourseCreator")
+  Participants     Participant[]
+  MessagesSent     Message[]       @relation("Sender")
+  MessagesReceived Message[]       @relation("Receiver")
+  Schedules        Schedule[]      @relation("InstructorSchedule")
+}
+
+model Course {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  created_by  String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  status      String   // Enum: "active", "inactive"
+
+  creator       User          @relation("CourseCreator", fields: [created_by], references: [id])
+  Sessions      Session[]
+  Participants  Participant[]
+}
+
+model Participant {
+  id         String   @id @default(uuid())
+  user_id    String
+  course_id  String
+  enrolled_at DateTime @default(now())
+
+  user   User   @relation(fields: [user_id], references: [id])
+  course Course @relation(fields: [course_id], references: [id])
+  Scores Score[]
+}
+
+model Session {
+  id         String   @id @default(uuid())
+  course_id  String
+  title      String
+  description String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  course    Course      @relation(fields: [course_id], references: [id])
+  Materials Material[]
+  Assignments Assignment[]
+}
+
+model Material {
+  id          String   @id @default(uuid())
+  session_id  String
+  title       String
+  description String?
+  file_url    String   // URL to the material file
+  created_at  DateTime @default(now())
+
+  session Session @relation(fields: [session_id], references: [id])
+}
+
+model Assignment {
+  id          String   @id @default(uuid())
+  session_id  String
+  title       String
+  description String?
+  deadline    DateTime
+  created_at  DateTime @default(now())
+
+  session Session @relation(fields: [session_id], references: [id])
+  Scores  Score[]
+}
+
+model Score {
+  id           String   @id @default(uuid())
+  participant_id String
+  assignment_id String
+  points       Int
+  created_at   DateTime @default(now())
+
+  participant Participant @relation(fields: [participant_id], references: [id])
+  assignment  Assignment  @relation(fields: [assignment_id], references: [id])
+}
+
+model Message {
+  id          String   @id @default(uuid())
+  sender_id   String
+  receiver_id String
+  content     String
+  sent_at     DateTime @default(now())
+
+  sender   User @relation("Sender", fields: [sender_id], references: [id])
+  receiver User @relation("Receiver", fields: [receiver_id], references: [id])
+}
+
+model Schedule {
+  id          String   @id @default(uuid())
+  instructor_id String
+  title       String
+  start_time  DateTime
+  end_time    DateTime
+  created_at  DateTime @default(now())
+
+  instructor User @relation("InstructorSchedule", fields: [instructor_id], references: [id])
+}
