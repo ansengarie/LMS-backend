@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient, Role } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 const register = async (req, res) => {
@@ -17,7 +17,7 @@ const register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Set default role to "student" if no role is provided
-        const userRole = role || "student"; // Default to "student"
+        const userRole = role ? Role[role.toUppercase()] : Role.STUDENT; // Default to "student"
 
         // Create new user
         const user = await prisma.user.create({
@@ -56,7 +56,7 @@ const registerInstructor = async (req, res) => {
                 name, // Correct field name
                 email,
                 password: hashedPassword,
-                role: "instructor", // Force role to "instructor"
+                role: Role.INSTRUCTOR, // Force role to "instructor"
             },
         });
 

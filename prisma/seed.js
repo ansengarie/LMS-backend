@@ -1,4 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient, Role } = require("@prisma/client");
 const bcrypt = require("bcrypt");
 
 const prisma = new PrismaClient();
@@ -27,7 +27,7 @@ const seedAdmin = async () => {
                 name: "Admin",
                 email,
                 password: hashedPassword,
-                role: "admin", // Role admin
+                role: Role.ADMIN, // Role admin
             },
         });
 
