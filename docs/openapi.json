@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "LMS - BE",
-        "description": "🚀 Baseurl: [http://localhost:3000/api](http://localhost:3000/)",
+        "description": "🚀 Baseurl: [http://localhost:3000/api](http://localhost:3000/) \n\nAuthor: [Aji Nuansa Sengarie](https://github.com/ansengarie)",
         "version": "1.0.0"
     },
     "servers": [
