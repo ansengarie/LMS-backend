@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
+const cors = require("cors"); // Import cors
 const { PrismaClient } = require("@prisma/client");
 const registerRoutes = require("./src/routes/index");
 
@@ -10,6 +11,8 @@ const app = express();
 const prismaClient = new PrismaClient();
 
 app.use(bodyParser.json());
+// Gunakan cors middleware
+app.use(cors());
 
 registerRoutes(app);
 

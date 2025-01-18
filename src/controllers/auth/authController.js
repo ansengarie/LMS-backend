@@ -17,10 +17,10 @@ const register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Set default role to "student" if no role is provided
-        const userRole = role ? Role[role.toUppercase()] : Role.STUDENT; // Default to "student"
+        const userRole = role ? Role[role.toUpperCase()] : Role.STUDENT; // Default to "student"
 
         // Create new user
-        const user = await prisma.user.create({
+        const user = await prisma.user.create({ 
             data: {
                 name, // Correct field name
                 email,
