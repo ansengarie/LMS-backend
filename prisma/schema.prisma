@@ -20,8 +20,6 @@ enum Role {
   STUDENT
 }
 
-
-
 // Model User
 model User {
   id              String   @id @default(uuid())
@@ -35,6 +33,11 @@ model User {
 
   // Tambahkan relasi ke Score
   Scores Score[] // Menambahkan relasi ke model Score
+  // Relasi: Pengguna yang mengirim pesan
+  sentMessages  Message[] @relation("Sender")
+
+  // Relasi: Pengguna yang menerima pesan
+  receivedMessages Message[] @relation("Receiver")
 }
 
 // Model Course
@@ -94,4 +97,19 @@ model Score {
 
   // Relasi: Score terkait dengan satu Course
   course Course @relation(fields: [course_id], references: [id])
+}
+
+// Model Message
+model Message {
+  id          String   @id @default(uuid())    // ID unik untuk pesan
+  sender_id   String   // ID pengguna yang mengirim pesan
+  receiver_id String   // ID pengguna yang menerima pesan
+  content     String   // Isi pesan
+  created_at  DateTime @default(now())         // Waktu pembuatan pesan
+
+  // Relasi: Pengirim pesan
+  sender      User     @relation("Sender", fields: [sender_id], references: [id])
+
+  // Relasi: Penerima pesan
+  receiver    User     @relation("Receiver", fields: [receiver_id], references: [id])
 }

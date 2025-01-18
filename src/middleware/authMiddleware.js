@@ -36,4 +36,14 @@ const isInstructor = (req, res, next) => {
     next();
 };
 
-module.exports = { verifyToken, isAdmin, isInstructor };
+const isAdminOrInstructor = (req, res, next) => {
+    if (req.user.role !== "ADMIN" && req.user.role !== "INSTRUCTOR") {
+        return res.status(403).json({
+            message:
+                "Access denied. Only Admin or Instructor can perform this action.",
+        });
+    }
+    next();
+};
+
+module.exports = { verifyToken, isAdmin, isInstructor, isAdminOrInstructor };

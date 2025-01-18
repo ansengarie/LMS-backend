@@ -1,0 +1,628 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "LMS - BE",
+        "description": "🚀 Baseurl: [http://localhost:3000/api](http://localhost:3000/)",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/api/"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Public"
+        },
+        {
+            "name": "Admin"
+        },
+        {
+            "name": "Users"
+        },
+        {
+            "name": "Courses"
+        },
+        {
+            "name": "Sessions"
+        },
+        {
+            "name": "Score"
+        },
+        {
+            "name": "Message"
+        }
+    ],
+    "paths": {
+        "/auth/register": {
+            "post": {
+                "tags": ["Public"],
+                "summary": "Register Student",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name": "ajins",
+                                    "email": "ansengarie@gmail.com",
+                                    "password": "12345678"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/register-instructor": {
+            "post": {
+                "tags": ["Public"],
+                "summary": "Register Instructor",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name": "instruktor aji",
+                                    "email": "aji@gmail.com",
+                                    "password": "12345678"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": ["Public"],
+                "summary": "Login",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "email": "admin@gmail.com",
+                                    "password": "admin123"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/users": {
+            "get": {
+                "tags": ["Admin"],
+                "summary": "All Users",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0ZjIwMWU2OC1hMWQwLTQyMjYtOWYwZS1lNzg1M2YxYTE2MGUiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczNzIyMzI1NSwiZXhwIjoxNzM3MjI2ODU1fQ.HgRcMNVQNkoQSCq-tsVYOJTnUyvvsBvYvVUsPs7cV6w"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/users/ccec6c54-2b66-4f41-b72c-0cd89d2957e6": {
+            "put": {
+                "tags": ["Users"],
+                "summary": "Update Profile",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name": "Updated Name"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0ZjIwMWU2OC1hMWQwLTQyMjYtOWYwZS1lNzg1M2YxYTE2MGUiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczNzIwMjIwMywiZXhwIjoxNzM3MjA1ODAzfQ.mTTEkchhvbzg5hh2LcXSdpBxR1rAt_9m02J1RGnET0A"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/courses/": {
+            "get": {
+                "tags": ["Courses"],
+                "summary": "Courses",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0ZjIwMWU2OC1hMWQwLTQyMjYtOWYwZS1lNzg1M2YxYTE2MGUiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczNzIyMzI1NSwiZXhwIjoxNzM3MjI2ODU1fQ.HgRcMNVQNkoQSCq-tsVYOJTnUyvvsBvYvVUsPs7cV6w"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Courses"],
+                "summary": "Course",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "title": "Belajar Pemrograman Web",
+                                    "description": "Mempelajari Pemrograman Web dari Dasar yaitu HTML, CSS, dan Javascript.",
+                                    "status": "ACTIVE"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjY2VjNmM1NC0yYjY2LTRmNDEtYjcyYy0wY2Q4OWQyOTU3ZTYiLCJlbWFpbCI6ImFqaUBnbWFpbC5jb20iLCJyb2xlIjoiSU5TVFJVQ1RPUiIsImlhdCI6MTczNzIwMzEzMiwiZXhwIjoxNzM3MjA2NzMyfQ.BWpCmNposnQ-Go3jjEAsi5V3Q9aGejCKmudQDqg9HhA"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/courses/0b887f62-4b52-4ba7-82b4-189042b3fb08": {
+            "get": {
+                "tags": ["Courses"],
+                "summary": "Course By Id",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0ZjIwMWU2OC1hMWQwLTQyMjYtOWYwZS1lNzg1M2YxYTE2MGUiLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczNzIyMzI1NSwiZXhwIjoxNzM3MjI2ODU1fQ.HgRcMNVQNkoQSCq-tsVYOJTnUyvvsBvYvVUsPs7cV6w"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/courses/c5a40c51-10c6-4baf-a1b2-efce3e19ff45": {
+            "put": {
+                "tags": ["Courses"],
+                "summary": "Course",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "title": "Belajar Pemrograman Web Dasar"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjY2VjNmM1NC0yYjY2LTRmNDEtYjcyYy0wY2Q4OWQyOTU3ZTYiLCJlbWFpbCI6ImFqaUBnbWFpbC5jb20iLCJyb2xlIjoiSU5TVFJVQ1RPUiIsImlhdCI6MTczNzIwNDUyNCwiZXhwIjoxNzM3MjA4MTI0fQ.11-Ri8XHmVgpPCT2ga8RM7b09A2XViCdNt6Edhs4nZc"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Courses"],
+                "summary": "Course",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjY2VjNmM1NC0yYjY2LTRmNDEtYjcyYy0wY2Q4OWQyOTU3ZTYiLCJlbWFpbCI6ImFqaUBnbWFpbC5jb20iLCJyb2xlIjoiSU5TVFJVQ1RPUiIsImlhdCI6MTczNzIwNDUyNCwiZXhwIjoxNzM3MjA4MTI0fQ.11-Ri8XHmVgpPCT2ga8RM7b09A2XViCdNt6Edhs4nZc"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/sessions": {
+            "get": {
+                "tags": ["Sessions"],
+                "summary": "Sessions",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjY2VjNmM1NC0yYjY2LTRmNDEtYjcyYy0wY2Q4OWQyOTU3ZTYiLCJlbWFpbCI6ImFqaUBnbWFpbC5jb20iLCJyb2xlIjoiSU5TVFJVQ1RPUiIsImlhdCI6MTczNzIwNDUyNCwiZXhwIjoxNzM3MjA4MTI0fQ.11-Ri8XHmVgpPCT2ga8RM7b09A2XViCdNt6Edhs4nZc"
+                    },
+                    {
+                        "name": "course_id",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "0b887f62-4b52-4ba7-82b4-189042b3fb08"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/sessions/c92ca3c6-fd0b-4fa5-a3ef-be43b0910959": {
+            "get": {
+                "tags": ["Sessions"],
+                "summary": "Session by Id",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjY2VjNmM1NC0yYjY2LTRmNDEtYjcyYy0wY2Q4OWQyOTU3ZTYiLCJlbWFpbCI6ImFqaUBnbWFpbC5jb20iLCJyb2xlIjoiSU5TVFJVQ1RPUiIsImlhdCI6MTczNzIwNDUyNCwiZXhwIjoxNzM3MjA4MTI0fQ.11-Ri8XHmVgpPCT2ga8RM7b09A2XViCdNt6Edhs4nZc"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Sessions"],
+                "summary": "Session",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "title": "Sesi Belajar Pemrograman Web"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjY2VjNmM1NC0yYjY2LTRmNDEtYjcyYy0wY2Q4OWQyOTU3ZTYiLCJlbWFpbCI6ImFqaUBnbWFpbC5jb20iLCJyb2xlIjoiSU5TVFJVQ1RPUiIsImlhdCI6MTczNzIxMTAwOSwiZXhwIjoxNzM3MjE0NjA5fQ.Bgwm1PT0a-dvpnmf2cvHSk7mHWz8FM4FVbD187YwfXY"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Sessions"],
+                "summary": "Session",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjY2VjNmM1NC0yYjY2LTRmNDEtYjcyYy0wY2Q4OWQyOTU3ZTYiLCJlbWFpbCI6ImFqaUBnbWFpbC5jb20iLCJyb2xlIjoiSU5TVFJVQ1RPUiIsImlhdCI6MTczNzIxMTAwOSwiZXhwIjoxNzM3MjE0NjA5fQ.Bgwm1PT0a-dvpnmf2cvHSk7mHWz8FM4FVbD187YwfXY"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/sessions/": {
+            "post": {
+                "tags": ["Sessions"],
+                "summary": "Session",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "course_id": "0b887f62-4b52-4ba7-82b4-189042b3fb08",
+                                    "title": "Mengenal pemrograman web pertemuan ke 1",
+                                    "description": "Sesi yang dibuat untuk membahas pemrograman web dari dasar"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjY2VjNmM1NC0yYjY2LTRmNDEtYjcyYy0wY2Q4OWQyOTU3ZTYiLCJlbWFpbCI6ImFqaUBnbWFpbC5jb20iLCJyb2xlIjoiSU5TVFJVQ1RPUiIsImlhdCI6MTczNzIwNDUyNCwiZXhwIjoxNzM3MjA4MTI0fQ.11-Ri8XHmVgpPCT2ga8RM7b09A2XViCdNt6Edhs4nZc"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/scores/": {
+            "post": {
+                "tags": ["Score"],
+                "summary": "Score",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "user_id": "b965810e-4493-4d01-886c-7e5bdf12fed1",
+                                    "course_id": "0b887f62-4b52-4ba7-82b4-189042b3fb08",
+                                    "points": 85
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjY2VjNmM1NC0yYjY2LTRmNDEtYjcyYy0wY2Q4OWQyOTU3ZTYiLCJlbWFpbCI6ImFqaUBnbWFpbC5jb20iLCJyb2xlIjoiSU5TVFJVQ1RPUiIsImlhdCI6MTczNzIxNjUxMSwiZXhwIjoxNzM3MjIwMTExfQ.ojTXBg6RSTpqgNGnHlVqXflaOQ8UX35yxtn2DWGZsMM"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/scores": {
+            "get": {
+                "tags": ["Score"],
+                "summary": "Score",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjY2VjNmM1NC0yYjY2LTRmNDEtYjcyYy0wY2Q4OWQyOTU3ZTYiLCJlbWFpbCI6ImFqaUBnbWFpbC5jb20iLCJyb2xlIjoiSU5TVFJVQ1RPUiIsImlhdCI6MTczNzIxNjUxMSwiZXhwIjoxNzM3MjIwMTExfQ.ojTXBg6RSTpqgNGnHlVqXflaOQ8UX35yxtn2DWGZsMM"
+                    },
+                    {
+                        "name": "course_id",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "0b887f62-4b52-4ba7-82b4-189042b3fb08"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/scores/a2040e63-d34c-43b9-bc05-a25fb5c39e44": {
+            "get": {
+                "tags": ["Score"],
+                "summary": "Score by Id",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjY2VjNmM1NC0yYjY2LTRmNDEtYjcyYy0wY2Q4OWQyOTU3ZTYiLCJlbWFpbCI6ImFqaUBnbWFpbC5jb20iLCJyb2xlIjoiSU5TVFJVQ1RPUiIsImlhdCI6MTczNzIxNjUxMSwiZXhwIjoxNzM3MjIwMTExfQ.ojTXBg6RSTpqgNGnHlVqXflaOQ8UX35yxtn2DWGZsMM"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/messages": {
+            "post": {
+                "tags": ["Message"],
+                "summary": "Message",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "receiver_id": "d6604eec-c7e2-4980-a1a2-908e8a2f05d6",
+                                    "content": "Ini message"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjY2VjNmM1NC0yYjY2LTRmNDEtYjcyYy0wY2Q4OWQyOTU3ZTYiLCJlbWFpbCI6ImFqaUBnbWFpbC5jb20iLCJyb2xlIjoiSU5TVFJVQ1RPUiIsImlhdCI6MTczNzIxOTI3NiwiZXhwIjoxNzM3MjIyODc2fQ.ZwHoV2-TxO8-rIMBVTZf-_nXFQvZjlDrfAJ-qpOE0us"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/messages/": {
+            "get": {
+                "tags": ["Message"],
+                "summary": "Message",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjY2VjNmM1NC0yYjY2LTRmNDEtYjcyYy0wY2Q4OWQyOTU3ZTYiLCJlbWFpbCI6ImFqaUBnbWFpbC5jb20iLCJyb2xlIjoiSU5TVFJVQ1RPUiIsImlhdCI6MTczNzIxNjUxMSwiZXhwIjoxNzM3MjIwMTExfQ.ojTXBg6RSTpqgNGnHlVqXflaOQ8UX35yxtn2DWGZsMM"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
