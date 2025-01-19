@@ -20,7 +20,7 @@ const register = async (req, res) => {
         const userRole = role ? Role[role.toUpperCase()] : Role.STUDENT; // Default to "student"
 
         // Create new user
-        const user = await prisma.user.create({ 
+        const user = await prisma.user.create({
             data: {
                 name, // Correct field name
                 email,
@@ -92,7 +92,18 @@ const login = async (req, res) => {
             { expiresIn: "1h" }
         );
 
-        return res.status(200).json({ message: "Login successful", token });
+        // Kirimkan token dan data user
+        return res.status(200).json({
+            message: "Login successful",
+            token,
+            user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+                profile_picture: user.profile_picture,
+            },
+        });
     } catch (error) {
         console.error("Login error:", error); // Log error ke console
         return res
